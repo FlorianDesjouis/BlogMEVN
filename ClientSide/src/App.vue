@@ -1,13 +1,18 @@
 <template>
   <main id="app">
-    <nav>
+    <nav class="home-nav">
       <ul>
-        <li>Home</li>
-        <li>One</li>
-        <li>Two</li>
+        <li class="home-nav-item">Gaming News</li>
+        <li class="home-nav-item">Science/Tech</li>
+        <li class="home-nav-item">Web News</li>
       </ul>
     </nav>
-    <router-view/>
+    <section class="home-content">
+      <div class="content-list"></div>
+      <div class="content-list"></div>
+      <div class="content-list"></div>
+    </section>
+    <router-view></router-view>
   </main>
 </template>
 
@@ -18,12 +23,42 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.home-nav {
+  width: 100%;
+  height: 80px;
+  background-color: #000;
+}
+
+ul {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  list-style: none;
+  align-items: center;
+}
+
+.home-nav-item {
+  width: 33%;
+  font-size: 32px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
 }
 </style>

@@ -36,7 +36,7 @@ module.exports = {
     },
     //Update a post
     update: (req, res) => {
-        Post.findByIdAndUpdate(req.param.id, req.body)
+        Post.findByIdAndUpdate(req.params.id, req.body)
         .exec()
         .then(post => {
             if(post === null){
@@ -49,7 +49,7 @@ module.exports = {
     },
     //Remove a post
     remove: (req, res) => {
-        Post.findByIdAndUpdate(req.params.id)
+        Post.findByIdAndRemove(req.params.id)
             .exec()
             .then(post => {
                 if(post === null){

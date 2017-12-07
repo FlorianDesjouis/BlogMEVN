@@ -37,9 +37,9 @@ module.exports = {
         const hash = crypto.createHash('sha256')
         hash.update(req.body.password);
         req.body.password = hash.digest('hex')
-            User.create(req.body)
-            .then(user => res.json({success:1, message: "User created", inserted: user}))
-            .catch(err => res.status(500).json({error:1, message: err.message}))
+        User.create(req.body)
+        .then(user => res.json({success:1, message: "User created", inserted: user}))
+        .catch(err => res.status(500).json({error:1, message: err.message}))
     },
     //Update a user
     update: (req, res) => {

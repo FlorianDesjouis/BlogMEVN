@@ -22,7 +22,7 @@ const Listen = (app, port, ip) => {
     return new Promise((resolve, reject) => {
         app.listen(port, ip, resolve)
     })
-}	
+}
 
 
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -35,7 +35,7 @@ app.use('/', (req, res, next) => {
 });
 
 //Routes
-app.get('/posts', post.findAll);
+app.get('/', post.findAll);
 app.get('/post:id', post.findOne);
 app.post('/post', post.create);
 app.put('/post/:id', post.update);

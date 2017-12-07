@@ -28,9 +28,11 @@ export default {
   name: 'HomeView',
 
   data () {
-    newsGaming: '',
-    newsScience: '',
-    newsWeb: ''
+    return {
+      newsGaming: '',
+      newsScience: '',
+      newsWeb: ''
+    }
   },
 
   methods: {

@@ -15,6 +15,12 @@
 
     props: {
       news: {type: Object, required: true}
+    },
+
+    methods: {
+      sortByCategory (category) {
+
+      }
     }
   }
 </script>

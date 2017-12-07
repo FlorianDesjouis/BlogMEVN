@@ -22,7 +22,6 @@
 </template>
 
 <script>
-// import users from '../data/users.json';
 import NewsCard from '../components/NewsCard.vue'
 
 export default {

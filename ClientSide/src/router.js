@@ -10,8 +10,15 @@ const routes = [
   { path: '/', component: HomeView },
   { path: '/login', component: LoginView },
   { path: '/register', component: RegisterView },
-  { path: '/post/:id', component: ReadPost },
-  { path: '/post/create', component: CreatePost }
+  { path: '/post/create', component: CreatePost, beforeRouteEnter (to, from, next) {
+      if (localStorage.getItem('token')) {
+        next();
+      } else {
+        next(false);
+      }
+    }
+  },
+  { path: '/post/:id', component: ReadPost }
 ]
 
 const router = new VueRouter({

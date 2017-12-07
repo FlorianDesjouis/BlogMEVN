@@ -1,19 +1,28 @@
 <template>
   <main id="app">
     <header>
-      <router-link to="/login">Sign in</router-link>
-      <router-link to="/register">Register</router-link>
+      <router-link to="/" class="link home-btn">World of News</router-link>
+      <router-link to="/post/create" class="link create-post-btn" v-if="loggedIn()">Post your article</router-link>
+      <router-link to="/login" class="link">Sign in</router-link>
+      <router-link to="/register" class="link">Register</router-link>
     </header>
     <router-view></router-view>
   </main>
 </template>
 
 <script>
-// import users from '../data/users.json';
-import NewsCard from './components/NewsCard.vue'
-
 export default {
-  name: 'app'
+  name: 'app',
+
+  methods: {
+    loggedIn () {
+      if (localStorage.getItem('token')) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 }
 </script>
 
@@ -31,6 +40,13 @@ body {
   text-align: center;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  background-color: #262727;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -40,6 +56,42 @@ ul {
   width: 100%;
   height: 80px;
   background-color: #000;
+}
+
+.link {
+  margin-right: 10px;
+  padding: 5px;
+  color: #fff;
+  border: 1px solid #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: .3s ease;
+}
+
+.link.home-btn {
+  margin-left: 10px;
+  margin-right: auto;
+  text-transform: uppercase;
+}
+
+.link.create-post-btn {
+  margin-right: auto;
+  text-transform: uppercase;
+  color: #262727;
+  border: 1px solid #E7E73F;
+  background-color: #E7E73F;
+}
+
+.link.create-post-btn:hover {
+  color: #fff;
+  border: 1px solid #E7E73F;
+  background-color: #E7E73F;
+}
+
+.link:hover {
+  color: #262727;
+  background-color: #fff;
 }
 
 .home-content {

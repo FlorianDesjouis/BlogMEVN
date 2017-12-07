@@ -1,7 +1,8 @@
 <template>
-  <main id="app">
-    readpost
-  </main>
+  <div class="read-post">
+    <h1></h1>
+    
+  </div>
 </template>
 
 <script>

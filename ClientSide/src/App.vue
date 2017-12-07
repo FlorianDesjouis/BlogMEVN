@@ -2,7 +2,7 @@
   <main id="app">
     <header>
       <router-link to="/" class="link home-btn">World of News</router-link>
-      <router-link to="/post/create" class="link create-post-btn">Post your article</router-link>
+      <router-link to="/post/create" class="link create-post-btn" v-if="loggedIn()">Post your article</router-link>
       <router-link to="/login" class="link">Sign in</router-link>
       <router-link to="/register" class="link">Register</router-link>
     </header>
@@ -14,9 +14,11 @@
 export default {
   name: 'app',
 
-  data () {
-    return {
+  methods: {
+    loggedIn () {
+      if (localStorage.getItem('token')) {
 
+      }
     }
   }
 }

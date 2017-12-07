@@ -1,5 +1,8 @@
 const User = require('./User.model');
 const crypto = require('crypto');
+const jwt = require("jsonwebtoken");
+const config = require("../config/config");
+const sha256 = require('sha256');
 
 module.exports = {
 
@@ -62,5 +65,44 @@ module.exports = {
                     res.send('user deleted')
                 }
             })
+    },
+    logout: function (req, res) {
+        res.clearCookie("token"); //delete token => deconnexion
+        let path_name = '/login'; //redirect
+        res.json({message: "you get disconnected !", error: false, path_name_redirect: path_name})
+    },
+    login: (req, res) => {
+        User.findOne({
+            username: req.body.username
+        }, function (err, user) {
+
+            if (err) throw err;
+
+            if (!user) {
+                res.json({error: true, message: 'Login failed. User not found.'});
+            } else if (user) {
+                // check if password matches
+                if (user.password !== sha256(req.body.password)) {
+                    res.json({error: true, message: 'Login failed. Wrong password.'});
+                } else {
+
+                    let token = jwt.sign({
+                        "name": user.name,
+                        "email": user.email,
+                        "password": user.password
+                    }, config.secret, {
+                        expiresIn: "1d" // d h etc
+                    });
+
+                    res.json({
+                        message: 'Connected with success !',
+                        error: false,
+                        token: token
+                    });
+                }
+
+            }
+
+        });
     }
 }

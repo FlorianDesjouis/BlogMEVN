@@ -87,7 +87,7 @@ module.exports = {
                 } else {
 
                     let token = jwt.sign({
-                        "name": user.name,
+                        "username": user.username,
                         "email": user.email,
                         "password": user.password
                     }, config.secret, {

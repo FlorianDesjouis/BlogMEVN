@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <h1>Create your account</h1>
-    <form action="/login">
+    <form action="/user">
       <label for="username">Username</label>
       <input type="text" name="username" placeholder="xxZekillerzzxx">
       <label for="email">Email</label>

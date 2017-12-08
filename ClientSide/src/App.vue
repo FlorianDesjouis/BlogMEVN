@@ -3,8 +3,8 @@
     <header>
       <router-link to="/" class="link home-btn">World of News</router-link>
       <router-link to="/post/create" class="link create-post-btn" v-if="loggedIn()">Post your article</router-link>
-      <router-link to="/login" class="link">Sign in</router-link>
-      <router-link to="/register" class="link">Register</router-link>
+      <router-link to="/login" class="link" v-if="!loggedIn()">Sign in</router-link>
+      <router-link to="/register" class="link" v-if="!loggedIn()">Register</router-link>
     </header>
     <router-view></router-view>
   </main>

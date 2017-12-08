@@ -8,16 +8,9 @@ import CreatePost from './views/CreatePost.vue'
 
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/login', component: LoginView },
-  { path: '/register', component: RegisterView },
-  { path: '/post/create', component: CreatePost, beforeRouteEnter (to, from, next) {
-      if (localStorage.getItem('token')) {
-        next();
-      } else {
-        next(false);
-      }
-    }
-  },
+  { path: '/login', component: LoginView, beforeEnter (to, from, next) { if (localStorage.getItem('token')) { next(false) } else { next() } } },
+  { path: '/register', component: RegisterView, beforeEnter (to, from, next) { if (localStorage.getItem('token')) { next(false) } else { next() } } },
+  { path: '/post/create', component: CreatePost, beforeEnter (to, from, next) { if (localStorage.getItem('token')) { next() } else { next(false) } } },
   { path: '/post/:id', component: ReadPost }
 ]
 

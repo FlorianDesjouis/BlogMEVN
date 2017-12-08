@@ -1,17 +1,15 @@
 <template>
   <form action="/" method="post" @submit.prevent="send">
-    <label for="cover">Cover</label>
-    <input type="file" name="cover">
     <label for="title">Title</label>
-    <input type="text" name="title" placeholder="Top 10 anime betrayal">
+    <input type="text" name="title" placeholder="Top 10 anime betrayal" v-model="post.title">
     <label for="category">Category</label>
-    <select name="category">
+    <select name="category" v-model="post.category">
       <option>Gaming News</option>
       <option>Science/Tech</option>
       <option>Web News</option>
     </select>
     <label for="content">Content</label>
-    <textarea name="content" placeholder="Write your story here..."></textarea>
+    <textarea name="content" placeholder="Write your story here..." v-model="post.content"></textarea>
 
     <input type="submit" name="submit_post" value="Create">
   </form>
@@ -24,11 +22,10 @@
     data () {
       return {
         post: {
-          image: '',
           title: '',
           content: '',
           category: '',
-          auteur: ''
+          auteur: window.localStorage.getItem('username')
         }
       }
     },

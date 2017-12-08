@@ -1,7 +1,7 @@
 <template>
   <div class="create-post">
     <h1>Create your post</h1>
-    <createpost-card @send="createPost"></createpost-card>
+    <createPost-card @send="createPost"></createPost-card>
   </div>
 </template>
 
@@ -23,12 +23,11 @@ export default {
       axios.post('http://localhost:1337/post', post)
         .then(function (response) {
           if (response.statusText === 'OK') {
-            console.log(response)
+            location.assign('/')
           }
         }).catch(function (err) {
           console.error(err)
         })
-      location.reload()
     }
   },
 

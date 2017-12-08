@@ -76,6 +76,8 @@ ul {
   font-weight: bold;
   text-decoration: none;
   transition: .3s ease;
+  background-color: #262727;
+  cursor: pointer;
 }
 
 .link.home-btn {

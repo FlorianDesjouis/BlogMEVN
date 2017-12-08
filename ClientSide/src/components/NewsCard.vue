@@ -1,6 +1,5 @@
 <template>
   <div class="news">
-      <img :src="news.photo">
       <div class="news__infos">
         <h2>{{ news.title }}</h2>
         <p>{{ news.content }}</p>
@@ -15,12 +14,6 @@
 
     props: {
       news: {type: Object, required: true}
-    },
-
-    methods: {
-      sortByCategory (category) {
-
-      }
     }
   }
 </script>

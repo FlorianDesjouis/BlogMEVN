@@ -9,19 +9,20 @@
     </nav>
     <section class="home-content">
       <div class="content-list gaming">
-        <news-card :news="newsGaming"></news-card>
+        <news-card v-for="news in filteredNews" :key="news.id" :news="news"></news-card>
       </div>
       <div class="content-list science">
-        <news-card :news="newsScience"></news-card>
+        <news-card v-for="news in filteredNews" :key="news.id" :news="news"></news-card>
       </div>
       <div class="content-list web">
-        <news-card :news="newsWeb"></news-card>
+        <news-card v-for="news in filteredNews" :key="news.id" :news="news"></news-card>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import NewsCard from '../components/NewsCard.vue'
 
 export default {
@@ -29,14 +30,57 @@ export default {
 
   data () {
     return {
-      newsGaming: '',
-      newsScience: '',
-      newsWeb: ''
+      news: {}
     }
   },
 
-  methods: {
+  computed: {
+    filteredNews () {
+      axios.get('http://localhost:1337/')
+        .then(function (response) {
+          console.log(response.data)
+          if (response.statusText === 'OK') {
+            return response.data.filter(news => {
+              if (news.category.indexOf('Gaming News') > -1) {
+                console.log(news)
+                return news
+              } else if (news.category.indexOf('Science/Tech') > -1) {
+                return news
+              } else if (news.category.indexOf('Web News') > -1) {
+                return news
+              }
+            })
+          }
+        }).catch(function (err) {
+          console.error(err)
+        })
+    }
 
+    /* filteredScienceNews () {
+      axios.get('http://localhost:1337/')
+        .then(function (response) {
+          if (response.statusText === 'OK') {
+            return response.data.filter(news => {
+              return news.category.indexOf('Science/Tech') > -1
+            })
+          }
+        }).catch(function (err) {
+          console.error(err)
+        })
+    },
+
+    filteredWebNews () {
+      axios.get('http://localhost:1337/')
+        .then(function (response) {
+          if (response.statusText === 'OK') {
+            return response.data.filter(news => {
+              return news.category.indexOf('Web News') > -1
+            })
+          }
+        }).catch(function (err) {
+          console.error(err)
+        })
+    } */
   },
 
   components: { NewsCard }

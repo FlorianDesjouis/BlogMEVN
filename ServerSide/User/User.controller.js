@@ -92,7 +92,8 @@ module.exports = {
                     res.json({
                         message: 'Connected with success !',
                         error: false,
-                        token: token
+                        token: token,
+                        id: user._id
                     });
                 }
 

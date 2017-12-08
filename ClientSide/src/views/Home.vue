@@ -37,7 +37,7 @@ export default {
   computed: {
     filteredNews () {
       var self = this
-      axios.get('http://localhost:1337/')
+      axios.get('http://localhost:1337/posts')
         .then(function (response) {
           console.log(response.data)
           if (response.statusText === 'OK') {

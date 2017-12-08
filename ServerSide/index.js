@@ -32,13 +32,13 @@ app.use('/', bodyParser.json());
 app.use('/', (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 	next();
 });
 
 //Routes
-app.get('/', post.findAll);
+app.get('/posts', post.findAll);
 app.get('/post:id', post.findOne);
 app.post('/post', post.create);
 app.put('/post/:id', post.update);

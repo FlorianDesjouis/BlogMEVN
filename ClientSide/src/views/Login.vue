@@ -26,6 +26,7 @@ export default {
             console.log(response)
             window.localStorage.setItem('token', response.data.token)
             window.localStorage.setItem('username', JSON.parse(response.config.data).username)
+            window.localStorage.setItem('id', response.data.id)
             location.assign('/')
           }
         }).catch(function (err) {

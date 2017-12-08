@@ -6,12 +6,15 @@
       <router-link to="/login" class="link" v-if="!loggedIn()">Sign in</router-link>
       <router-link to="/register" class="link" v-if="!loggedIn()">Register</router-link>
       <button v-on:click="logout()" class="link" v-if="loggedIn()">Logout</button>
+      <button v-on:click="removeUser()" class="link" v-if="loggedIn()">Delete account</button>
     </header>
     <router-view></router-view>
   </main>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'app',
 
@@ -26,10 +29,24 @@ export default {
     logout () {
       if (localStorage.getItem('token')) {
         localStorage.removeItem('token')
+        localStorage.removeItem('username')
         location.reload()
       } else {
         return false
       }
+    },
+    removeUser () {
+      var id = localStorage.getItem('id')
+      console.log('remove ', id)
+      axios.delete(`http://localhost:1337/user/${id}`)
+          .then(function (response) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('username')*
+            localStorage.removeItem('id')
+          }).catch(function (err) {
+            console.error('ERROR ', err)
+          })
+      location.reload()
     }
   }
 }

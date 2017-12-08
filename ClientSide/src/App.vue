@@ -5,6 +5,7 @@
       <router-link to="/post/create" class="link create-post-btn" v-if="loggedIn()">Post your article</router-link>
       <router-link to="/login" class="link" v-if="!loggedIn()">Sign in</router-link>
       <router-link to="/register" class="link" v-if="!loggedIn()">Register</router-link>
+      <button v-on:click="logout()" class="link" v-if="loggedIn()">Logout</button>
     </header>
     <router-view></router-view>
   </main>
@@ -18,6 +19,14 @@ export default {
     loggedIn () {
       if (localStorage.getItem('token')) {
         return true
+      } else {
+        return false
+      }
+    },
+    logout () {
+      if (localStorage.getItem('token')) {
+        localStorage.removeItem('token')
+        location.reload()
       } else {
         return false
       }

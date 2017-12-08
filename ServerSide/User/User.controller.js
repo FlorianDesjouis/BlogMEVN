@@ -66,11 +66,6 @@ module.exports = {
                 }
             })
     },
-    logout: function (req, res) {
-        res.clearCookie("token"); //delete token => deconnexion
-        let path_name = '/login'; //redirect
-        res.json({message: "you get disconnected !", error: false, path_name_redirect: path_name})
-    },
     login: (req, res) => {
         User.findOne({
             username: req.body.username

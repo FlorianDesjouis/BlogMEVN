@@ -36,51 +36,21 @@ export default {
 
   computed: {
     filteredNews () {
+      var self = this
       axios.get('http://localhost:1337/')
         .then(function (response) {
           console.log(response.data)
           if (response.statusText === 'OK') {
-            return response.data.filter(news => {
-              if (news.category.indexOf('Gaming News') > -1) {
-                console.log(news)
-                return news
-              } else if (news.category.indexOf('Science/Tech') > -1) {
-                return news
-              } else if (news.category.indexOf('Web News') > -1) {
-                return news
-              }
+            self.news = response.data.filter(news => {
+              return news.category.indexOf('Gaming News') > -1
             })
+            console.log(self.news)
+            return self.news
           }
         }).catch(function (err) {
           console.error(err)
         })
     }
-
-    /* filteredScienceNews () {
-      axios.get('http://localhost:1337/')
-        .then(function (response) {
-          if (response.statusText === 'OK') {
-            return response.data.filter(news => {
-              return news.category.indexOf('Science/Tech') > -1
-            })
-          }
-        }).catch(function (err) {
-          console.error(err)
-        })
-    },
-
-    filteredWebNews () {
-      axios.get('http://localhost:1337/')
-        .then(function (response) {
-          if (response.statusText === 'OK') {
-            return response.data.filter(news => {
-              return news.category.indexOf('Web News') > -1
-            })
-          }
-        }).catch(function (err) {
-          console.error(err)
-        })
-    } */
   },
 
   components: { NewsCard }

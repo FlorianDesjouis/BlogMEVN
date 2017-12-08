@@ -22,7 +22,10 @@ export default {
     login (user) {
       axios.post('http://localhost:1337/login', user)
         .then(function (response) {
-          if (response.statusText === 'OK') {
+          console.log(response)
+          if (response.status === 200) {
+            console.log(response.data.token)
+            window.localStorage.setItem('token', response.data.token)
             location.assign('/')
           }
         }).catch(function (err) {

@@ -12,4 +12,6 @@ then you'll do 'cd /ServerSide.
 You'll do another 'npm install'.
 After this, you just have to run 'node index.js' or 'nodemon index.js' if you have nodemon. If you don't, you can install it globally with 'npm install -g nodemon'.
 
+Also, you must create a config.js file where you'll put your database url and you secret token
+
 Project made by Alexis Bonnet and Florian Desjouis.
